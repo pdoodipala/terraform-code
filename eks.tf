@@ -65,7 +65,7 @@ resource "aws_eks_cluster" "eks-cluster" {
 }
 
 locals {
-  eks-fargatepiam-role-name= "eks-fargate-profile-iam-role"
+  eks-fargatepiam-role-name= "eks-fargate-profile"
 }
 
 resource "aws_iam_role" "eks-fargate-profile" {
@@ -101,4 +101,8 @@ resource "aws_eks_fargate_profile" "default" {
   }
 
   depends_on = [aws_eks_cluster.eks-cluster]
+}
+
+data "aws_eks_cluster_auth" "eks" {
+  name = aws_eks_cluster.eks-cluster.id
 }
