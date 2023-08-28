@@ -63,3 +63,16 @@ resource "aws_eks_cluster" "eks-cluster" {
 
   depends_on = [aws_iam_role_policy_attachment.amazon-eks-cluster-policy]
 }
+
+resource "aws_eks_fargate_profile" "eks_fargate_profile" {
+  cluster_name = aws_eks_cluster.eks-cluster.name
+  name         = "default"
+
+  subnet_ids = ["aws_subnet.private_subnets[0].id", "aws_subnet.private_subnets[1].id"]  # Specify your subnet IDs
+
+  selector {
+    namespace = "default"
+  }
+
+  depends_on = [aws_eks_cluster.eks-cluster]
+}
