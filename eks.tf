@@ -89,9 +89,9 @@ resource "aws_iam_role_policy_attachment" "eks-fargate-profile" {
   role       = aws_iam_role.eks-fargate-profile.name
 }
 
-resource "aws_eks_fargate_profile" "eks_fargate_profile" {
+resource "aws_eks_fargate_profile" "default" {
   cluster_name = aws_eks_cluster.eks-cluster.name
-  name         = "default"
+  fargate_profile_name   = "default"
   pod_execution_role_arn = aws_iam_role.eks-fargate-profile.arn
 
   subnet_ids = ["aws_subnet.private_subnets[0].id", "aws_subnet.private_subnets[1].id"]  # Specify your subnet IDs
