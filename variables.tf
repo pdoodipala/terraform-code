@@ -15,3 +15,13 @@ variable "azs" {
  description = "Availability Zones"
  default     = ["eu-central-1a", "eu-central-1b", "eu-central-1c"]
 }
+
+variable "cluster_version" {
+  type = string
+  default = "1.27"
+}
+
+variable "cluster_name" {
+  type = string
+  default = "eks-cluster"
+}
