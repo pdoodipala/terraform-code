@@ -65,7 +65,7 @@ resource "aws_eks_cluster" "eks-cluster" {
 }
 
 locals {
-  eks-fargatepiam-role-name= "eks-fargate-profile"
+  eks-fargatepiam-role-name= "eks-fargate-profile-iam-role"
 }
 
 resource "aws_iam_role" "eks-fargate-profile" {
@@ -89,15 +89,15 @@ resource "aws_iam_role_policy_attachment" "eks-fargate-profile" {
   role       = aws_iam_role.eks-fargate-profile.name
 }
 
-resource "aws_eks_fargate_profile" "default" {
+resource "aws_eks_fargate_profile" "kube-system" {
   cluster_name = aws_eks_cluster.eks-cluster.name
-  fargate_profile_name   = "default"
+  fargate_profile_name   = "kube-system"
   pod_execution_role_arn = aws_iam_role.eks-fargate-profile.arn
 
   subnet_ids = ["aws_subnet.private_subnets[0].id", "aws_subnet.private_subnets[1].id"]  # Specify your subnet IDs
 
   selector {
-    namespace = "default"
+    namespace = "kube-system"
   }
 
   depends_on = [aws_eks_cluster.eks-cluster]
