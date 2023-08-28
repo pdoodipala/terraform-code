@@ -64,8 +64,12 @@ resource "aws_eks_cluster" "eks-cluster" {
   depends_on = [aws_iam_role_policy_attachment.amazon-eks-cluster-policy]
 }
 
+locals {
+  eks-fargatepiam-role-name= "eks-fargate-profile-iam-role"
+}
+
 resource "aws_iam_role" "eks-fargate-profile" {
-  name = eks-fargate-profile
+  name = local.eks-fargatepiam-role-name
 
   assume_role_policy = jsonencode({
     Statement = [{
