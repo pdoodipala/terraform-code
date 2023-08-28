@@ -1,9 +1,5 @@
 resource "aws_eip" "eip" {
   vpc = true
-
-  tags = {
-    Name = terraform-eip
-  }
 }
 
 resource "aws_nat_gateway" "nat" {
