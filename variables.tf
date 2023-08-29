@@ -44,3 +44,8 @@ variable "root_device_type" {
   type = string
   default = "gp2"
 }
+
+variable "key_pair_name" {
+  type = string
+  default = "test"
+}

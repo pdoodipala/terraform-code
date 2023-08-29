@@ -2,7 +2,7 @@
 resource "aws_security_group" "allow_ssh_eks" {
   name        = "allow_ssh_eks"
   description = "Allow external SSH connectivity to EC2 instances"
-  vpc_id      = aws_vpc.vpc-playleap.id
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     description = "SSH to EC2"
