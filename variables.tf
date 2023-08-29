@@ -25,3 +25,22 @@ variable "cluster_name" {
   type = string
   default = "eks-cluster"
 }
+
+variable "instance_ami" {
+  type = string
+  default = "ami-0c3472daea3f355b7"
+}
+
+variable "instanceType" {
+  type = string
+  default = "t2.small"
+}
+
+variable "root_device_size" {
+  type = string
+  default = "30"
+}
+variable "root_device_type" {
+  type = string
+  default = "gp2"
+}
