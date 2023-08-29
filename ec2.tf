@@ -110,7 +110,7 @@ resource "aws_eip_association" "eksec2eip_assoc" {
 resource "aws_instance" "eks-instance" {
     ami = var.instance_ami
     subnet_id = aws_subnet.public_subnets[0].id
-    instance_type = var.instance_type
+    instance_type = var.instanceType
     associate_public_ip_address = true
     vpc_security_group_ids = [aws_security_group.allow_ssh_eks.id]
     key_name = aws_key_pair.key_pair.key_name
