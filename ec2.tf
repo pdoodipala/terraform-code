@@ -86,7 +86,7 @@ resource "tls_private_key" "key" {
 }
 
 resource "local_sensitive_file" "private_key" {
-  filename        = "test.pem"
+  filename        = "terraform.pem"
   content         = tls_private_key.key.private_key_pem
   file_permission = "0400"
 }

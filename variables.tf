@@ -47,5 +47,5 @@ variable "root_device_type" {
 
 variable "key_pair_name" {
   type = string
-  default = "test"
+  default = "terraform"
 }
